@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "397021969393",
+    "project_id": "motorapps-fe2de",
+    "storage_bucket": "motorapps-fe2de.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:397021969393:android:71b05b1270ede2a8a4a250",
+        "android_client_info": {
+          "package_name": "com.example.shoes_shop_ui"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "397021969393-e53i85shomanrmaqrkj08h3ksfvjff8g.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.shoes_shop_ui",
+            "certificate_hash": "46466d56c7ba0a98e36df2e55444ab35ac5bd998"
+          }
+        },
+        {
+          "client_id": "397021969393-j7hrrgtgnivttl6bpn785lktqqn0bulc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDkPBN1D11Unz_HGQ4HPCvpHwFv4tEo8Rg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "397021969393-j7hrrgtgnivttl6bpn785lktqqn0bulc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -5,7 +5,7 @@ import 'package:shoes_shop_ui/consts.dart';
 import 'package:shoes_shop_ui/models/sparepart_model.dart';
 
 class DetailsPage extends StatefulWidget {
-  final ShoesModel item;
+  final MotorModel item;
 
   const DetailsPage({
     Key? key,

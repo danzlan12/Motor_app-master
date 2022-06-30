@@ -1,4 +1,5 @@
-import 'package:flutter/material.dart';
+    import 'package:flutter/material.dart';
+import 'package:shoes_shop_ui/auth/login_page.dart';
 
 import 'pages/myhomepage.dart';
 
@@ -18,7 +19,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(),
+      home: LoginPage(),
     );
   }
 }

@@ -1,12 +1,32 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:badges/badges.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-
+import 'package:shoes_shop_ui/auth/login_page.dart';
 import 'package:shoes_shop_ui/consts.dart';
+import 'package:shoes_shop_ui/pages/add_feedback.dart';
 import 'package:shoes_shop_ui/pages/details_page.dart';
 import 'package:shoes_shop_ui/models/sparepart_model.dart';
+import 'package:shoes_shop_ui/pages/feedback.dart';
 import 'package:shoes_shop_ui/pages/my_favorite.dart';
 import 'package:shoes_shop_ui/pages/mycart.dart';
+import 'package:shoes_shop_ui/pages/scannqrcode.dart';
+import 'package:firebase_core/firebase_core.dart';
+import '../auth/sign_in.dart';
+
+void main() async {
+  //do initialization to use firebase
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+
+  runApp(
+      MaterialApp(
+        //remove the debug banner
+          debugShowCheckedModeBanner: false,
+          home: MyHomePage()
+      )
+  );
+}
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key}) : super(key: key);
@@ -31,9 +51,11 @@ class _MyHomePageState extends State<MyHomePage>
     super.dispose();
     _controller.dispose();
   }
-
+  var isloading = false;
   @override
   Widget build(BuildContext context) {
+    var _screenheight = .2;
+    var _screenwidth = MediaQuery.of(context).size.width;
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.grey[200],
@@ -107,6 +129,42 @@ class _MyHomePageState extends State<MyHomePage>
                       ),
               ),
             ),
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const QrCodeScan()));
+              },
+              child: Padding(
+                padding: const EdgeInsets.only(top: 20, right: 50),
+                child: const Icon(
+                  Icons.camera_alt,
+                  color: Colors.black,
+                  size: 28,
+                ),
+              ),
+            ),
+            GestureDetector(
+              // onTap: () {
+              //   Navigator.push(
+              //       context,
+              //       MaterialPageRoute(
+              //           builder: (context) => signOutGoogle()));
+              // },
+              onTap: () {
+                signOutGoogle();
+                Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) {return LoginPage();}), ModalRoute.withName('/'));
+              },
+              child: Padding(
+                padding: const EdgeInsets.only(top: 20, right: 50),
+                child: const Icon(
+                  Icons.logout_sharp,
+                  color: Colors.black,
+                  size: 28,
+                ),
+              ),
+            ),
           ],
         ),
         body: Padding(
@@ -144,15 +202,24 @@ class _MyHomePageState extends State<MyHomePage>
                   _buildlistitem(items: olilist),
                   _buildlistitem(items: otherlist),
                 ]),
-              )
+              ),
             ],
           ),
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const FormFeedback()),
+            );
+          },
+          child: Icon(Icons.feedback),
         ),
       ),
     );
   }
 
-  Widget _buildlistitem({required List<ShoesModel> items}) {
+  Widget _buildlistitem({required List<MotorModel> items}) {
     return ListView.builder(
         // physics: const BouncingScrollPhysics(),
         itemCount: items.length,
@@ -167,7 +234,7 @@ class _MyHomePageState extends State<MyHomePage>
         });
   }
 
-  Widget _builditem({required List<ShoesModel> myitems, required int index}) {
+  Widget _builditem({required List<MotorModel> myitems, required int index}) {
     return GestureDetector(
       onTap: () {
         Navigator.push(
@@ -253,4 +320,5 @@ class _MyHomePageState extends State<MyHomePage>
       ),
     );
   }
+
 }

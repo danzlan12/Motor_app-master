@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 
-class ShoesModel {
+class MotorModel {
   final String img;
   final String name;
   final String company;
@@ -8,7 +8,7 @@ class ShoesModel {
   bool isselected;
   final Color color;
 
-  ShoesModel(
+  MotorModel(
       {required this.img,
       required this.name,
       required this.company,
@@ -16,3 +16,4 @@ class ShoesModel {
       required this.isselected,
       required this.color});
 }
+
